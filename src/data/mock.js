@@ -172,6 +172,6 @@ export const contentItems = [
 export const socialLinks = [
   { label: 'GitHub', url: '#' },
   { label: 'LinkedIn', url: '#' },
-  { label: 'Twitter', url: '#' },
+  { label: 'X', url: '#' },
   { label: 'Email', url: 'mailto:hello@erielmiquilino.dev' },
 ];

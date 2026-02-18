@@ -12,7 +12,7 @@ export const socialLink = defineType({
       title: 'Label',
       type: 'string',
       validation: (rule) => rule.required(),
-      description: 'Ex: GitHub, LinkedIn, Twitter, Email',
+      description: 'Ex: GitHub, LinkedIn, X, Email',
     }),
     defineField({
       name: 'url',
@@ -28,7 +28,7 @@ export const socialLink = defineType({
         list: [
           { title: 'GitHub', value: 'GitHub' },
           { title: 'LinkedIn', value: 'LinkedIn' },
-          { title: 'Twitter', value: 'Twitter' },
+          { title: 'X', value: 'X' },
           { title: 'Email', value: 'Email' },
         ],
         layout: 'dropdown',

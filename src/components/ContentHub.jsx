@@ -1,6 +1,12 @@
 import React from 'react';
 import { contentItems, socialLinks, profileData } from '../data/mock';
-import { Play, FileText, Mic, Github, Linkedin, Twitter, Mail, ExternalLink } from 'lucide-react';
+import { Play, FileText, Mic, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+
+const XLogo = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-label="X">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.139 2.25h6.932l4.26 5.632 5.913-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117Z" />
+  </svg>
+);
 
 const typeIconMap = {
   video: Play,
@@ -11,7 +17,7 @@ const typeIconMap = {
 const socialIconMap = {
   GitHub: Github,
   LinkedIn: Linkedin,
-  Twitter: Twitter,
+  X: XLogo,
   Email: Mail,
 };
 
@@ -90,7 +96,6 @@ const ContentHub = () => {
                     rel="noopener noreferrer"
                   >
                     <Icon size={18} />
-                    <span>{link.label}</span>
                   </a>
                 );
               })}
