@@ -4,34 +4,34 @@ overview: Definir a arquitetura completa de schemas Sanity para migrar todos os 
 todos:
   - id: create-dirs
     content: Criar diretórios documents/ e objects/ dentro de studio/schemaTypes/
-    status: pending
+    status: completed
   - id: schema-seo
     content: Criar object type seo.ts com metaTitle, metaDescription, ogImage
-    status: pending
+    status: completed
   - id: schema-site-settings
     content: Criar document type site-settings.ts (singleton) com dados de perfil, textos globais, navItems e SEO
-    status: pending
+    status: completed
   - id: schema-project
     content: Criar document type project.ts com title, slug, subtitle, description, techStack (string array), projectType, color, year, role, image, order
-    status: pending
+    status: completed
   - id: schema-skill
     content: Criar document type skill.ts com name, score, rank, category (options.list)
-    status: pending
+    status: completed
   - id: schema-experience
     content: Criar document type experience.ts com role, company, period, level, description, order
-    status: pending
+    status: completed
   - id: schema-content-item
     content: Criar document type content-item.ts com title, slug, contentType, platform, url, thumbnail, color, size, publishedAt
-    status: pending
+    status: completed
   - id: schema-social-link
     content: Criar document type social-link.ts com label, url, icon (options.list), order
-    status: pending
+    status: completed
   - id: update-index
     content: Atualizar schemaTypes/index.ts para exportar todos os tipos registrados
-    status: pending
+    status: completed
   - id: update-config
     content: Atualizar sanity.config.ts com structure customizada (singleton siteSettings no topo, dividers, listas filtradas)
-    status: pending
+    status: completed
 isProject: false
 ---
 
