@@ -5,6 +5,7 @@ import { SanityDataProvider, useSanity } from "./context/SanityDataContext";
 import HeroSection from "./components/HeroSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ResumeSection from "./components/ResumeSection";
+import ExperienceSection from "./components/ExperienceSection";
 import ContentHub from "./components/ContentHub";
 
 /* ---- Cursor Trail (Tron light-cycle style) ---- */
@@ -102,6 +103,7 @@ const PortfolioPage = () => {
         <HeroSection />
         <ProjectsSection />
         <ResumeSection />
+        <ExperienceSection />
         <ContentHub />
       </main>
     </div>
