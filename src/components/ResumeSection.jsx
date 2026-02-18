@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { skills, experience } from '../data/mock';
+import { useSanity } from '../context/SanityDataContext';
 import { Trophy, Briefcase } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
 const ResumeSection = () => {
+  const { skills, experience } = useSanity();
   const [visibleRows, setVisibleRows] = useState([]);
   const sectionRef = useRef(null);
   const hasAnimated = useRef(false);

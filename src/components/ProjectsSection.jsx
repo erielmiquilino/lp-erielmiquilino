@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { projects } from '../data/mock';
+import { useSanity } from '../context/SanityDataContext';
 import { Badge } from './ui/badge';
 import { ChevronLeft, ChevronRight, Code2, Cpu, Zap } from 'lucide-react';
 import {
@@ -10,6 +10,7 @@ import {
 } from './ui/tooltip';
 
 const ProjectsSection = () => {
+  const { projects } = useSanity();
   const [hoveredId, setHoveredId] = useState(null);
   const scrollRef = useRef(null);
 

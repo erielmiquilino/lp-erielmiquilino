@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { profileData, navItems } from '../data/mock';
+import { useSanity } from '../context/SanityDataContext';
 import { Gamepad2, LayoutGrid, Trophy, Monitor, ChevronDown } from 'lucide-react';
 
 const iconMap = {
@@ -17,6 +17,7 @@ const colorMap = {
 };
 
 const HeroSection = () => {
+  const { profileData, navItems } = useSanity();
   const [coinVisible, setCoinVisible] = useState(true);
   const [typedName, setTypedName] = useState('');
   const fullName = profileData.name;

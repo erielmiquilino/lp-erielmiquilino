@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SanityDataProvider, useSanity } from "./context/SanityDataContext";
 import HeroSection from "./components/HeroSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ResumeSection from "./components/ResumeSection";
@@ -74,8 +75,22 @@ const CursorTrail = () => {
   );
 };
 
+/* ---- Loading Screen (arcade style) ---- */
+const ArcadeLoading = () => (
+  <div className="arcade-world" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+    <div style={{ textAlign: 'center', fontFamily: 'monospace' }}>
+      <p style={{ color: '#00f0ff', fontSize: '1.5rem', letterSpacing: '0.2em', animation: 'pulse 1.5s ease-in-out infinite' }}>LOADING...</p>
+      <p style={{ color: '#a855f7', fontSize: '0.85rem', marginTop: '0.5rem', opacity: 0.7 }}>INSERTING COIN</p>
+    </div>
+  </div>
+);
+
 /* ---- Main Portfolio Page ---- */
 const PortfolioPage = () => {
+  const { loading } = useSanity();
+
+  if (loading) return <ArcadeLoading />;
+
   return (
     <div className="arcade-world">
       <CursorTrail />
@@ -95,13 +110,13 @@ const PortfolioPage = () => {
 
 function App() {
   return (
-    <div>
+    <SanityDataProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PortfolioPage />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </SanityDataProvider>
   );
 }
 
