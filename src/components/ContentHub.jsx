@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSanity } from '../context/SanityDataContext';
+import { contentItems, socialLinks, profileData } from '../data/mock';
 import { Play, FileText, Mic, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 
 const XLogo = ({ size = 18 }) => (
@@ -29,8 +29,6 @@ const sizeClassMap = {
 };
 
 const ContentHub = () => {
-  const { contentItems, socialLinks, profileData } = useSanity();
-
   return (
     <>
       <section id="content" className="content-section">
