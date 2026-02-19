@@ -766,6 +766,10 @@ body {
   color: var(--text-dim);
 }
 
+.sth-score {
+  text-align: right;
+}
+
 .sr-score {
   font-family: var(--font-pixel);
   font-size: 10px;
@@ -1312,11 +1316,15 @@ body {
     grid-row: span 1;
   }
   .footer-top-row { flex-direction: column; }
+  .lb-screen { padding-left: 12px; padding-right: 12px; }
   .score-table-header,
   .score-row {
-    grid-template-columns: 40px 1fr 80px;
+    grid-template-columns: 32px 1fr 62px;
+    gap: 6px;
+    padding-right: 4px;
   }
   .sth-cat, .sr-category { display: none; }
+  .sr-name { font-size: 11px; letter-spacing: 0; }
   .quest-timeline { padding-left: 32px; }
   .quest-card-inner { padding: 16px; }
   .quest-role { font-size: 13px; }
