@@ -766,6 +766,10 @@ body {
   color: var(--text-dim);
 }
 
+.sth-score {
+  text-align: right;
+}
+
 .sr-score {
   font-family: var(--font-pixel);
   font-size: 10px;
