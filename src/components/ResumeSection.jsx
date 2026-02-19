@@ -25,7 +25,7 @@ const ResumeSection = () => {
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [skills]);
 
   const getRowColor = (rank) => {
     if (rank <= 3) return '#00ff41';

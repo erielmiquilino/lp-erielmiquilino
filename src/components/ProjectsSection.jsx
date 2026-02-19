@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSanity } from '../context/SanityDataContext';
 import { Badge } from './ui/badge';
 import { ChevronLeft, ChevronRight, Code2, Cpu, Zap } from 'lucide-react';
@@ -9,19 +9,17 @@ import {
   TooltipTrigger,
 } from './ui/tooltip';
 
+const VISIBLE_COUNT = 4;
+
 const ProjectsSection = () => {
   const { projects } = useSanity();
   const [hoveredId, setHoveredId] = useState(null);
-  const scrollRef = useRef(null);
+  const [startIndex, setStartIndex] = useState(0);
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -340 : 340,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const maxStart = Math.max(0, projects.length - VISIBLE_COUNT);
+  const canPrev = startIndex > 0;
+  const canNext = startIndex < maxStart;
+  const visibleProjects = projects.slice(startIndex, startIndex + VISIBLE_COUNT);
 
   return (
     <section id="projects" className="projects-section">
@@ -32,15 +30,19 @@ const ProjectsSection = () => {
       </div>
 
       <div className="carousel-wrapper">
-        <button className="carousel-arrow arrow-left" onClick={() => scroll('left')}>
+        <button
+          className="carousel-arrow arrow-left"
+          onClick={() => setStartIndex((i) => Math.max(0, i - 1))}
+          disabled={!canPrev}
+        >
           <ChevronLeft size={28} />
         </button>
 
-        <div className="arcade-carousel" ref={scrollRef}>
+        <div className="arcade-carousel">
           <TooltipProvider delayDuration={200}>
-            {projects.map((project) => (
+            {visibleProjects.map((project) => (
               <div
-                key={project.id}
+                key={project._id || project.id}
                 className={`arcade-cabinet ${project.type} ${hoveredId === project.id ? 'cabinet-active' : ''}`}
                 style={{ '--cab-color': project.color }}
                 onMouseEnter={() => setHoveredId(project.id)}
@@ -100,7 +102,11 @@ const ProjectsSection = () => {
           </TooltipProvider>
         </div>
 
-        <button className="carousel-arrow arrow-right" onClick={() => scroll('right')}>
+        <button
+          className="carousel-arrow arrow-right"
+          onClick={() => setStartIndex((i) => Math.min(maxStart, i + 1))}
+          disabled={!canNext}
+        >
           <ChevronRight size={28} />
         </button>
       </div>
