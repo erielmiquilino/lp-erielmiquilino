@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSanity } from '../context/SanityDataContext';
 import { Badge } from './ui/badge';
 import { ChevronLeft, ChevronRight, Code2, Cpu, Zap } from 'lucide-react';
@@ -9,17 +9,33 @@ import {
   TooltipTrigger,
 } from './ui/tooltip';
 
-const VISIBLE_COUNT = 4;
+function useVisibleCount() {
+  const getCount = () => {
+    const w = window.innerWidth;
+    if (w <= 640) return 1;
+    if (w <= 900) return 2;
+    return 4;
+  };
+  const [count, setCount] = useState(getCount);
+  useEffect(() => {
+    const onResize = () => setCount(getCount());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+  return count;
+}
 
 const ProjectsSection = () => {
   const { projects } = useSanity();
   const [hoveredId, setHoveredId] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = useVisibleCount();
 
-  const maxStart = Math.max(0, projects.length - VISIBLE_COUNT);
-  const canPrev = startIndex > 0;
-  const canNext = startIndex < maxStart;
-  const visibleProjects = projects.slice(startIndex, startIndex + VISIBLE_COUNT);
+  const maxStart = Math.max(0, projects.length - visibleCount);
+  const safeStart = Math.min(startIndex, maxStart);
+  const canPrev = safeStart > 0;
+  const canNext = safeStart < maxStart;
+  const visibleProjects = projects.slice(safeStart, safeStart + visibleCount);
 
   return (
     <section id="projects" className="projects-section">
@@ -32,7 +48,7 @@ const ProjectsSection = () => {
       <div className="carousel-wrapper">
         <button
           className="carousel-arrow arrow-left"
-          onClick={() => setStartIndex((i) => Math.max(0, i - 1))}
+          onClick={() => setStartIndex(Math.max(0, safeStart - 1))}
           disabled={!canPrev}
         >
           <ChevronLeft size={28} />
@@ -104,7 +120,7 @@ const ProjectsSection = () => {
 
         <button
           className="carousel-arrow arrow-right"
-          onClick={() => setStartIndex((i) => Math.min(maxStart, i + 1))}
+          onClick={() => setStartIndex(Math.min(maxStart, safeStart + 1))}
           disabled={!canNext}
         >
           <ChevronRight size={28} />
