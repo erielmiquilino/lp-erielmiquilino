@@ -42,6 +42,29 @@ body {
   background-attachment: fixed;
 }
 
+/* ---------- Neon Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e1a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff, #a855f7, #ff00aa);
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #39ff14, #00f0ff, #ff2d7b);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #0a0e1a;
+}
+
 @media (hover: hover) and (pointer: fine) {
   body, body * { cursor: none !important; }
 }
